@@ -31,3 +31,32 @@ db.books.createIndex({ isActive: 1 }, { unique: true })
 ```
 
 **If you attempt to create a unique index on the "isActive" field with db.books.createIndex({ isActive: 1 }, { unique: true }), MongoDB will reject this index creation because there are two documents with the same "isActive" value ("true"). Unique indexes require that the indexed field's values be unique across the entire collection.**
+
+<h2>More on Indexing in Mongo</h2>
+
+<ol>
+<li>
+  Create a TTL (Time to Live) Index:
+  
+  ```
+// Create a TTL index on the "expireAt" field of the "collectionName" collection, documents will be automatically deleted after the specified time period
+db.collectionName.createIndex({ expireAt: 1 }, { expireAfterSeconds: 3600 });
+```
+</li>
+
+<li>
+  Drop an Index
+
+  ```
+// Drop the index with the given name from the "collectionName" collection
+db.collectionName.dropIndex("indexName");
+```
+</li>
+<li>Drop all indexes for a collection
+  
+```
+// Drop all indexes (except the default _id index) for the "collectionName" collection
+db.collectionName.dropIndexes();
+```
+</li>
+</ol>
