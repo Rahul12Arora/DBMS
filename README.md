@@ -1,7 +1,7 @@
 # DBMS
 Essential theory concepts of DBMS
 
-<h2>Indexes</h2>
+<h2>Indexing</h2>
 
 
 <ul>
