@@ -63,7 +63,42 @@ db.collectionName.dropIndexes();
 <li>Compound Indexes
 https://www.geeksforgeeks.org/mongodb-compound-indexes/
 db.products.createIndex({manufacturer:1, price:-1})
+  
 ```
 https://www.geeksforgeeks.org/mongodb-compound-indexes/
-```</li>
+```
+</li>
+
+<li>
+MongoDb Hashed Indices/Indexes
+<ul>
+  Features
+<li>Your access pattern (how you search) must only be to find documents with a specific value(non-ranged) for the indexed field (key-value lookup, e.g., finding a product by the SKU, or finding a user by their ID, etc.)</li>
+<li>You don't need range based queries or sorting for the indexed field.</li>
+<li>Your field is a very large string and Mongo's numerical hash of the field is smaller than the original field.</li>
+
+```
+  // The type of data in the collection. Each document is a random string with 65 characters.
+{
+  "myLargeRandomString": "40a9da87c3e22fe5c47392b0209f296529c01cea3fa35dc3ba2f3d04f1613f8e"
+}
+The index is about 1/4 of the normal version!
+
+mongos> use MyDb
+mongos> db.myCollection.stats()["indexSizes"]
+{
+    // A regular index. This one is sorted by the value of myLargeRandomString
+    "myLargeRandomString_-1"     : 23074062336,
+
+    // The hashed version of the index for the same field. It is around 1/4 of the original size.
+    "myLargeRandomString_hashed" : 6557511680,
+}
+```
+
+</ul>
+```
+db.collection.ensureIndex({'field':'hashed'});
+```
+</li>
+
 </ol>
