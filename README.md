@@ -59,4 +59,11 @@ db.collectionName.dropIndex("indexName");
 db.collectionName.dropIndexes();
 ```
 </li>
+
+<li>Compound Indexes
+https://www.geeksforgeeks.org/mongodb-compound-indexes/
+db.products.createIndex({manufacturer:1, price:-1})
+```
+https://www.geeksforgeeks.org/mongodb-compound-indexes/
+```</li>
 </ol>
