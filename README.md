@@ -96,6 +96,7 @@ mongos> db.myCollection.stats()["indexSizes"]
 ```
 
 </ul>
+
 ```
 db.collection.ensureIndex({'field':'hashed'});
 ```
